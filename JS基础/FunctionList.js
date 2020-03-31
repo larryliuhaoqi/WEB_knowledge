@@ -49,7 +49,7 @@ parseFloat() // 返回首个浮点数数值
 .MAX_VALUE // 返回JS可能的最大数
 .MIN_VALUE // 返回JS可能的最小数
 .POSITIVE_INFINITY // 正无穷大（溢出返回  1/0
-.NEGATIVE_INFINITY // 负无穷大（溢出返回 -1/0
+.NEGATIVE_INFINITY // 负无穷大（溢出返回 -1/0bb
 .NaN // 非数字值
 
 
@@ -63,7 +63,7 @@ arr instanceof Array // 返回true
 .toString() // 把数组转换为数组值
 .join("*") // 用*连接合并所有元素
 .shift() // 弹出并删除第一个
-.pop // 弹出并删除最后一个
+.pop() // 弹出并删除最后一个
 .unshift("Lemon") // 新增"Lemon"到开头并返回长度
 .push("Lemon") // 新增"Lemon"到队尾并返回长度
 delete arr[0] // 删除内容，会留下空洞
@@ -82,6 +82,7 @@ arr_1.concat(arr_2,arr_3) // 连接 arr_1,arr_2 和 arr_3
     return 0;
 }); // 按字符串属性排序
 .reverse() // 反转
+
 Math.max(arr) // 查找最大值
 Math.min(arr) // 查找最小值
 
@@ -111,8 +112,8 @@ new Date("FEBRUARY, 25, 2015"); // Wed Feb 25 2015 00:00:00 GMT+0800 (China Stan
 .getTime() // 时间（毫秒）
 .getFullYear() // 年
 .getMonth() // 月
-.getDate // 日
-.getDay // 周几
+.getDate() // 日
+.getDay() // 周几
 .getHours() // 小时
 .getMinutes() // 分
 .getSeconds() // 秒
@@ -162,7 +163,7 @@ Math.tan(x) // 正切
 Math.asin(x) // 反正弦
 Math.acos() // 反余弦
 Math.atan(x) // 反正切
-Math.max(arr) // 返回最大值
+Math.max(arr) // 返回最大值 Math.max().apply(this, arr)
 Math.min(arr) // 返回最小值
 Math.random() // 返回一个0（包括）至 1（不包括）之间的随机数
 Math.floor(Math.random() * 100) // 返回0至99
@@ -233,3 +234,18 @@ function isDate(date) {
 
 String() // 转换为字符串
 Number() // 转换为数字，空转为0，其他字符转为NaN
+
+
+
+
+
+
+// 位运算
+操作    结果        等同于       结果
+5 & 1	 1	    0101 & 0001	    0001
+5 | 1	 5	    0101 | 0001	    0101
+5 ^ 1	 4	    0101 ^ 0001	    0100
+~ 5	     10 	 ~0101	1010
+5 << 1	 10	    0101 << 1	    1010
+5 >> 1	 2	    0101 >> 1	    0010
+5 >>> 1	 2	    0101 >>> 1	    0010

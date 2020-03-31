@@ -1,9 +1,11 @@
-### v-bind和v-model的区别
+# `Vue`
 
-1.v-bind用来绑定数据和属性以及表达式，缩写为'：'
-2.v-model使用在表单中，实现双向数据绑定的，在表单元素外使用不起作用
+## `v-bind和v-model的区别`
 
-### 什么是 mvvm
+1.`v-bind`用来绑定数据和属性以及表达式，缩写为'：'  
+2.`v-model`使用在表单中，实现双向数据绑定的，在表单元素外使用不起作用
+
+## 什么是 `mvvm`
 
 MVVM 是 Model-View-ViewModel 的缩写。mvvm 是一种设计思想。Model 层代表数据模型，也可以在 Model 中定义数据修改和操作的业务逻辑；View 代表 UI 组件，它负责将数据模型转化成 UI 展现出来，ViewModel 是一个同步 View 和 Model 的对象。
 
@@ -11,18 +13,18 @@ MVVM 是 Model-View-ViewModel 的缩写。mvvm 是一种设计思想。Model 层
 
 ViewModel 通过双向数据绑定把 View 层和 Model 层连接了起来，而 View 和 Model 之间的同步工作完全是自动的，无需人为干涉，因此开发者只需关注业务逻辑，不需要手动操作 DOM, 不需要关注数据状态的同步问题，复杂的数据状态维护完全由 MVVM 来统一管理。
 
-### mvvm 和 mvc 区别
+## mvvm 和 mvc 区别
 
 mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc 中 Controller 演变成 mvvm 中的 viewModel。mvvm 主要解决了 mvc 中大量的 DOM 操作使页面渲染性能降低，加载速度变慢，影响用户体验。和当 Model 频繁发生变化，开发者需要主动更新到 View 。
 
-### vue 的优点是什么
+## vue 的优点是什么
 
 - 低耦合。视图（View）可以独立于 Model 变化和修改，一个 ViewModel 可以绑定到不同的"View"上，当 View 变化的时候 Model 可以不变，当 Model 变化的时候 View 也可以不变。
 - 可重用性。你可以把一些视图逻辑放在一个 ViewModel 里面，让很多 view 重用这段视图逻辑。
 - 独立开发。开发人员可以专注于业务逻辑和数据的开发（ViewModel），设计人员可以专注于页面设计，使用 Expression Blend 可以很容易设计界面并生成 xml 代码。
 - 可测试。界面素来是比较难于测试的，而现在测试可以针对 ViewModel 来写。
 
-### 请详细说下你对 vue 生命周期的理解
+## 请详细说下你对 vue 生命周期的理解
 
 答：总共分为 8 个阶段创建前/后，载入前/后，更新前/后，销毁前/后。
 
@@ -31,7 +33,7 @@ mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc
 - 更新前/后：当 data 变化时，会触发 beforeUpdate 和 updated 方法。
 - 销毁前/后：在执行 destroy 方法后，对 data 的改变不会再触发周期函数，说明此时 vue 实例已经解除了事件监听以及和 dom 的绑定，但是 dom 结构依然存在
 
-### 组件之间的传值
+## 组件之间的传值
 
 1. 父组件与子组件传值
 
@@ -74,7 +76,7 @@ mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc
 
 2. 子组件向父组件传递数据
 
-```html
+```js
 //子组件通过$emit方法传递参数
 <template>
    <div v-on:click="events"></div>
@@ -94,7 +96,6 @@ mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc
 
 
 //
-
 <template>
     <div>{{data}}</div>
 </template>
@@ -106,6 +107,13 @@ mvc 和 mvvm 其实区别并不大。都是一种设计思想。主要就是 mvc
     }
 </script>
 ```
+
+3. [兄弟组件通信](https://blog.csdn.net/Amanda_wmy/article/details/80134823)
+   1. 先子传父，再父传子
+   2. 借助中央事件总线
+      1. 第一步：借助中央事件总线：在外部新建一个js文件，取名Bus.js，可放在assets文件夹目录下.
+         1.  
+      2. 第二步：两个组件作为子组件被同一个父组件所引用，在同一个页面显示。
 
 ### active-class 是哪个组件的属性
 
