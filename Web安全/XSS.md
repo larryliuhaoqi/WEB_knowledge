@@ -1,6 +1,6 @@
 # `XSS 跨站脚本攻击`
 
-![xss](img/xss.png)
+![xss](img/../../img/xss.png)
 
 XSS ( Cross Site Scripting ) 是指恶意攻击者利用网站没有对用户提交数据进行转义处理或者过滤不足的缺点，进而添加一些代码，嵌入到web页面中去。使别的用户访问都会执行相应的嵌入代码。
 
