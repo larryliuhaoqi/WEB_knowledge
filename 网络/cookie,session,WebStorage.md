@@ -39,26 +39,26 @@ session一个场景是购物车，添加了商品之后客户端处可以知道�
 
 ### `cookie属性`
 
-- max-age
-  - 多久后过期
+- `max-age`
+  - `多久后`过期
   - 默认在浏览器关闭时失效
-- expires
-  - 到哪个时间点过期
-- secure
-  - 表示这个cookie只会在https的时候才会发送
-- HttpOnly
-  - 设置后无法通过在js中使用document.cookie访问
+- `expire`s
+  - 到哪个`时间点`过期
+- `secure`
+  - 表示这个cookie只会在`https`的时候才会发送
+- `HttpOnly`
+  - 设置后`无法`通过在js中使用`document.cookie`访问
   - 保障安全，防止攻击者盗用用户cookie
-- domain
-  - 表示该cookie对于哪个域是有效的。
+- `domain`
+  - 表示该cookie对于哪个`域`是`有效的`。
 
 ## `session`
 
-- 存放在服务器的一种用来存放用户数据的类似HashTable的结构
-- 浏览器第一次发送请求时，服务器自动生成了HashTable和SessionID来唯一标识这个hash表，并将sessionID存放在cookie中通过响应发送到浏览器。浏览器第二次发送请求会将前一次服务器响应中的sessionID随着cookie发送到服务器上，服务器从请求中提取sessionID，并和保存的所有sessionID进行对比，找到这个用户对应的hash表。
-  - 一般sessionID是有时间限制的，超时后销毁，默认30min
+- 存放在服务器的一种用来存放用户数据的类似`HashTable`的结构
+- 浏览器第一次发送请求时，服务器自动生成了`HashTable`和`SessionID`来唯一标识这个`HashTable`，并将sessionID存放在`cookie`中通过响应发送到浏览器。浏览器第二次发送请求会将前一次服务器响应中的`sessionID`随着cookie发送到服务器上，服务器从请求中提取`sessionID`，并和保存的所有`sessionID`进行对比，找到这个用户对应的hash表。
+- 一般sessionID是有`时间限制`的，超时后销毁，默认`30min`
 - 当用户在应用程序的web页面间跳转时，存储在session对象中的变量不会丢失而是在整个用户会话中一直存在下去。
-- session依赖于cookie，因为sessionID是存放在cookie中的。
+- session依赖于cookie，sessionID是存放在`cookie`中的。
 
 ## `sesssion与cookie的区别`
 

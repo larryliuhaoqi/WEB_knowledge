@@ -1,6 +1,6 @@
-# NodeJS
+# `NodeJS`
 
-## NodeJS 特点
+## `NodeJS 特点`
 
  - 非阻塞式的异步I/O
    - Node.js中采用了非阻塞型I/O机制，因此在执行了访问文件的代码之后，Nodejs不会阻塞在那里等待文件获取完成，而是把这件事交给底层操作系统，使用回调函数的方式来处理异步的IO，立即转而执行其它的代码，
@@ -15,15 +15,14 @@
  - 不擅长CPU密集型业务
    - 由于Node单线程，如果长时间运行计算将导致CPU不能释放，使得后续I/O无法发起。（解决办法是分解大型运算为多个小任务，不阻塞I/O发起）
 
-
-### global对象
+### `global对象`
 与在浏览器端不同，浏览器端将希望全局访问的对象挂到window上，而nodejs则将希望全局访问的对象挂到global对象上
 
  - CommonJS
  - Buffer、process、console
  - timer定时器相关
 
-### setImmediate()、setTimeout(fn, 0) 与 process.nextTick()
+### `setImmediate()、setTimeout(fn, 0) 与 process.nextTick()`
 两个都是传入一个回调函数，当同步事件执行完之后马上执行。
 
 执行顺序依次是：
@@ -33,7 +32,6 @@
    - 回调函数加入到 任务队列尾部。即使是0，也会又4ms的延时
  - setImmediate()
    - 将回调函数插入到任务队列的最末尾，也不会造成阻塞，但不妨碍其他的异步事件
-
 
 ```js
 setImmediate(() => {

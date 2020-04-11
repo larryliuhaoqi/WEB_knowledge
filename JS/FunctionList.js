@@ -231,13 +231,9 @@ function isArray(arr) {
 function isDate(date) {
     return date.constructor === Date;
 }
-
-String() // 转换为字符串
-Number() // 转换为数字，空转为0，其他字符转为NaN
-
-
-
-
+String(Date()) // 全局方法
+.toString() // 转换为字符串
+.Number() // 转换为数字，空转为0，其他字符转为NaN
 
 
 // 位运算
@@ -245,7 +241,33 @@ Number() // 转换为数字，空转为0，其他字符转为NaN
 5 & 1	 1	    0101 & 0001	    0001
 5 | 1	 5	    0101 | 0001	    0101
 5 ^ 1	 4	    0101 ^ 0001	    0100
-~ 5	     10 	 ~0101	1010
+~ 5	     10 	    ~0101   	1010
 5 << 1	 10	    0101 << 1	    1010
 5 >> 1	 2	    0101 >> 1	    0010
 5 >>> 1	 2	    0101 >>> 1	    0010
+
+
+// 正则
+.search("W3School") // 搜索
+.replace("Microsoft", "W3School") // 替换
+/W3School/.test("W3School is a website") // 返回true（or false）
+/e/.exec("The best things in life are free!") // 返回"e"
+
+
+// 错误
+try {
+    // 供测试的代码块
+    if (x == "") {
+        throw "是空的"
+    }
+}
+catch(e) {
+    // 处理错误的代码块
+    document.getElementById("myDiv").innerHTML = e.message; //error 有 .name 和 .message 属性
+}
+finally {
+    // 无论 try / catch 结果如何都执行的代码块
+}
+
+
+// 作用域

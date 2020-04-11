@@ -1,13 +1,13 @@
-# nginx代理
+# `nginx代理`
 
-### nginx基本代理
+## `nginx基本代理`
 
 [nginx代理](https://www.jianshu.com/p/46bc0e0186d5)
 
 nginx代理分为正向代理或反向代理。
 正向代理与反向代理的区别就是代理的对象不一样，正向代理代理的对象是客户端，反向代理代理的对象是服务端
 
-```
+```js
 server {
   listen        80;
   # 访问的域名
@@ -21,7 +21,7 @@ server {
 }
 ```
 
-### nginx配置缓存
+## `nginx配置缓存`
 
 ```
 # 写在server外
@@ -35,7 +35,7 @@ proxy_cache_path  cache levels=1:2 keys_zoom=my_cache:10m
 - keys_zoom=my_cache:10m
   - 申请10兆内存来缓存内容
 
-```
+```js
 server {
   listen        80;
   server_name   test.com;
