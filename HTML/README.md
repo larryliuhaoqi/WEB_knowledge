@@ -262,25 +262,25 @@ FastClick.notNeeded = function(layer) { ... }
     clickEvent.forwardedTouchEvent = true // 自定义的
     targetElement.dispatchEvent(clickEvent)
   })
-  ```
-`步骤：`
+```
 
-    1. 业务正常使用 click 绑定事件；
-    2. 在 document.body 绑定 touchstart 和 touchend。
+### `步骤：`
 
-      touchstart：
+1. 业务正常使用 `click 绑定`事件；
+2. 在 `document.body` 绑定 `touchstart` 和 `touchend`。
 
-      用于记录当前点击的元素targetElement；
+- `touchstart`：
+  - 用于`记录`当前点击的`元素targetElement`；
 
-      touchend：
-
-      阻止默认事件（屏蔽之后的 click事件）
+- `touchend`：
+  - `阻止默认事件`（屏蔽之后的 click事件）
       合成 click 事件并添加可跟踪属性 forwardedTouchEvent
       在 targetElement 上触发 click事件
       targetElement 上绑定的事件立即执行，
       完成 FastClick
 
-    3. 执行业务自己的click事件
+3. `执行`业务自己的`click`事件
 
-`总结:`  
-事件的执行过程需要了解：touch事件 先于 mouse事件 先于 click执行，因此可以在document.body 上绑定事件用于监听点触行为，根据需要模拟 click 触发真正需要响应的元素。
+## `总结:`
+
+事件的执行过程需要了解：`touch事件` 先于 `mouse事件` 先于 `click 执行`，因此可以在 `document.body` 上绑定事件用于监听点触行为，根据需要 `模拟click` 触发真正需要响应的元素。
